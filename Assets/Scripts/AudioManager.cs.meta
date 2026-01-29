@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a15ae72076ad85d42834f18ab82a0823
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - musicSource: {instanceID: 0}
+  - sfxSource: {instanceID: 0}
+  - background: {fileID: 8300000, guid: a58f0ea46c9934046b9561076fa63c0d, type: 3}
+  - click: {fileID: 8300000, guid: fbe224923caedba47bbf919ca8bdaf32, type: 3}
+  - correct: {instanceID: 0}
+  - wrong: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
