@@ -6,3 +6,79 @@
  - Tem validação e mensagens úteis no console
  - Está preparado para expansão (ex: som diferente por botão, delay, etc.)
  - Segue boas práticas do Unity 2023+
+ - 
+
+
+~~~~~~
+using UnityEngine;
+using UnityEngine.UI;
+
+[RequireComponent(typeof(Button))] // Garante que o componente só pode ser adicionado em um Button
+public class ButtonClickSound : MonoBehaviour
+{
+    [Header("Configurações de Som")]
+    [SerializeField] private AudioClip clickSound; // Opcional: som específico deste botão
+    [SerializeField] private bool useDefaultClick = true; // Se true, usa o som padrão do AudioManager
+
+    private Button button;
+
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+        if (button == null)
+        {
+            Debug.LogError($"O componente ButtonClickSound precisa estar em um GameObject com Button.", this);
+            enabled = false;
+            return;
+        }
+    }
+
+    private void OnEnable()
+    {
+        // Adiciona o listener apenas quando o objeto está ativo
+        if (button != null)
+        {
+            button.onClick.AddListener(OnButtonClicked);
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Remove o listener para evitar memory leaks
+        if (button != null)
+        {
+            button.onClick.RemoveListener(OnButtonClicked);
+        }
+    }
+
+    private void OnButtonClicked()
+    {
+        // Prioridade: som específico do botão > som padrão do AudioManager
+        if (clickSound != null)
+        {
+            // Toca o som específico (se existir)
+            AudioManager.Instance?.PlayOneShot(clickSound);
+        }
+        else if (useDefaultClick && AudioManager.Instance != null)
+        {
+            // Toca o som padrão de clique
+            AudioManager.Instance.PlayClick();
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum som de clique configurado para este botão e AudioManager não encontrado.", this);
+        }
+    }
+
+    // Método público para chamar manualmente (ex: de outro script)
+    public void PlayClickManually()
+    {
+        OnButtonClicked();
+    }
+
+    // Opcional: permite trocar o som em runtime
+    public void SetCustomClickSound(AudioClip newSound)
+    {
+        clickSound = newSound;
+    }
+}
