@@ -117,3 +117,32 @@ public class SceneCommands : MonoBehaviour
     }
 }
 ~~
+
+ - Principais melhorias feitas:
+
+ - Nome da classe mais descritivo: SceneCommands (em vez de comandosBasicos)
+ - Validação robusta:
+ - Verifica se a cena existe antes de tentar carregar
+ - Evita erros silenciosos com Debug.LogError
+
+ - Confirmação de reset (evita apagar dados por acidente)
+ - PlayerPrefs.Save() explícito após reset
+ - Método assíncrono LoadSceneAsync (pronto para loading screens)
+ - Métodos de conveniência (LoadMainMenu, QuitGame)
+ - [ContextMenu] para testar reset direto no Inspector (útil em desenvolvimento)
+ - Comentários XML para documentação (aparecem no IntelliSense)
+ - Uso de #if UNITY_EDITOR para quit funcionar no editor
+
+ - Como usar agora:
+
+ - Coloque o script em um GameObject persistente (ou no Canvas principal)
+ - No botão (no Inspector → On Click):
+ - Arraste o GameObject com esse script
+ - Escolha SceneCommands → LoadScene
+ - Digite o nome da cena (ex: "Menu", "Jogo", "Creditos")
+
+ - Para reset:
+ - Botão "Resetar Pontuações" → SceneCommands → ResetAllScores
+
+-  Para sair do jogo:
+ - Botão "Sair" → SceneCommands → QuitGame
