@@ -1,9 +1,13 @@
   - Principais melhorias profissionais implementadas:
 
- - Nomenclatura padronizada:
- - Classe: ThemeSelector (PascalCase, descritivo)
- - Campos: camelCase privado com [SerializeField]
- - Métodos: PascalCase, verbos de ação
+  - AudioManager.Instance.PlayClick();
+  - AudioManager.Instance.PlayCorrect();
+  - AudioManager.Instance.SetMusicVolume(0.3f);
+
+  - Nomenclatura padronizada:
+  - Classe: ThemeSelector (PascalCase, descritivo)
+  - Campos: camelCase privado com [SerializeField]
+  - Métodos: PascalCase, verbos de ação
 
  - Flexibilidade e dados centralizados:
  - ThemeData[] themes: Array serializado para nomes e nº de questões (fácil editar no Inspector)
