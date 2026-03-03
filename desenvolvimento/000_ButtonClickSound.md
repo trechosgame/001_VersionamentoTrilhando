@@ -100,3 +100,7 @@ public class ButtonClickSound : MonoBehaviour
  - Reutilizável: pode ser usado em dezenas de botões sem repetir código
  - Flexível: permite som personalizado por botão ou usar o padrão global
  - Boas práticas: [RequireComponent], OnEnable/OnDisable, validação no Awake
+
+ - Dicas extras (opcional)
+
+ - Se quiser som diferente por tipo de botão (ex: botão de menu, botão de resposta certa, botão de pausa):
