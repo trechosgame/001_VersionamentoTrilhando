@@ -9,7 +9,7 @@
  - 
 
 
-~~~~~~
+~~
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -105,11 +105,11 @@ public class ButtonClickSound : MonoBehaviour
 
  - Se quiser som diferente por tipo de botão (ex: botão de menu, botão de resposta certa, botão de pausa):
 
-~~~~~~
+~
 [SerializeField] private AudioClip customClickSound;
 [SerializeField] private bool isPositiveAction; // ex: som de "certo"
 
-~~~~~~
+~~
 
 E no OnButtonClicked:C#if (isPositiveAction)
 
@@ -119,3 +119,11 @@ else
     AudioManager.Instance?.PlayClick();
 ~~
 
+Adicionar feedback visual/haptic (se estiver em mobile):C#Handheld.Vibrate(); // ou usar plugin de haptic mais avançado
+Teste rápido:
+Crie um Button na cena
+Adicione este script
+Clique no botão → deve tocar o som padrão do AudioManager
+
+
+Se quiser integrar com animação no botão (ex: scale punch no clique) ou adicionar som de hover, é só pedir que eu adiciono! 😄
