@@ -63,3 +63,41 @@ public class temaInfo : MonoBehaviour
 - Feedback visual (cor na resposta certa/errada – opcional)
 - Preparado para expansão (temporizador, animações, som de acerto/erro)
 - Comentários claros e XML para documentação
+
+ - Como usar agora:
+
+ - No Inspector:
+ - Arraste os 5 Text (pergunta + 4 alternativas + progresso)
+ - No campo Questions:
+ - Size = número de perguntas
+ - Preencha cada pergunta com:
+ - Question
+ - Option A/B/C/D
+ - Correct Answer (exatamente "A", "B", "C" ou "D")
+
+ - Nos botões de resposta:
+ - Botão A → On Click → QuizResponder → AnswerA
+ - Botão B → AnswerB
+ - Botão C → AnswerC
+ - Botão D → AnswerD
+
+ - Tela de nota final (seu script anterior) lê:
+ - notaFinalTempX e acertosTempX (onde X = idTema)
+
+ - Benefícios dessa versão:
+
+ - Sem repetição de código (uma única função SubmitAnswer)
+ - Fácil de editar perguntas (tudo no Inspector, sem arrays separados)
+ - Validação (evita erros se algo estiver faltando)
+ - Escalável (fácil adicionar timer, feedback visual, sons, animações)
+ - Seguro (não quebra se PlayerPrefs não existir)
+
+ - Se quiser:
+
+ - Feedback visual (verde/vermelho nas opções)
+ - Som de acerto/erro
+ - Temporizador por pergunta
+ - Animação de transição
+ - Suporte a imagens nas perguntas
+
+ - É só pedir que eu adiciono na próxima versão! 🚀
