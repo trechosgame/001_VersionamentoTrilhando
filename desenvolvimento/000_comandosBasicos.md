@@ -146,3 +146,20 @@ public class SceneCommands : MonoBehaviour
 
 -  Para sair do jogo:
  - Botão "Sair" → SceneCommands → QuitGame
+
+ - Dicas para deixar ainda mais profissional:
+
+ - Adicione fade/transition:C#public void LoadSceneWithFade(string sceneName)
+{
+    // Exemplo com DOTween ou seu sistema de fade
+    // FadeOut();
+    LoadScene(sceneName);
+}
+ - Salve apenas chaves específicas (em vez de DeleteAll):C#public void ResetThemeScores(int themeId)
+{
+    PlayerPrefs.DeleteKey($"notaFinal{themeId}");
+    PlayerPrefs.DeleteKey($"acertos{themeId}");
+    PlayerPrefs.Save();
+}
+
+ - Se quiser integrar com tela de loading, fade, ou sistema de confirmação visual (em vez de EditorUtility.DisplayDialog), posso adicionar isso também! 🚀
