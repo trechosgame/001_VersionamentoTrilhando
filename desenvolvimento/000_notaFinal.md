@@ -150,3 +150,61 @@ public class FinalScoreDisplay : MonoBehaviour
     }
 }
  ~~
+
+ - Principais melhorias implementadas:
+ - Nome da classe mais descritivo → FinalScoreDisplay
+ - Validação robusta no Awake (evita erros silenciosos)
+ - Constantes para pontuações (fácil ajustar critérios de estrelas)
+ - Método separado para atualizar estrelas (sem repetição de código)
+ - Verificação de existência da cena antes de carregar
+ - PlayerPrefs com prefixos claros e opção de limpeza temporária comentada
+ - Método BackToMenu pronto para uso (opcional)
+ - Comentários XML para documentação (aparecem no IntelliSense)
+ - Array de estrelas (loop simples, fácil de adicionar animação depois)
+
+ - Como usar:
+
+ - Coloque o script em um GameObject da tela de resultado (ex: Canvas ou painel final)
+ - No Inspector:
+ - Arraste os campos Score Text, Info Text e os 3 objetos de estrela no array Stars
+ - Ajuste Total Questions se o número de questões mudar por tema
+
+ - No botão "Jogar Novamente":
+ -  On Click → arraste este objeto → escolha FinalScoreDisplay → PlayAgain
+
+ - (Opcional) Botão "Voltar ao Menu":
+ - On Click → FinalScoreDisplay → BackToMenu (passe o nome da cena do menu)
+
+ - Sugestões para deixar ainda mais profissional (opcional):
+
+ - Animação das estrelas:C#private void UpdateStars(int score)
+~~
+{
+    HideAllStars();
+    int starsEarned = /* cálculo */;
+    for (int i = 0; i < starsEarned; i++)
+    {
+        if (stars[i] != null)
+        {
+            stars[i].SetActive(true);
+            // Exemplo com DOTween:
+            // stars[i].transform.localScale = Vector3.zero;
+            // stars[i].transform.DOScale(1f, 0.5f).SetDelay(i * 0.2f);
+        }
+    }
+}
+~~
+- Som de vitória:C#private void Start()
+~~
+{
+    LoadData();
+    UpdateDisplay();
+    if (finalScore >= perfectScore)
+        AudioManager.Instance?.PlayCorrect(); // ou som de vitória
+
+}
+~~
+Transição suave para próxima cena:
+Use LoadSceneAsync + barra de loading (posso adicionar se quiser)
+
+Teste e me diga se precisa de mais ajustes (ex: fade, som, animação das estrelas, integração com menu de temas, etc.)! 🚀
