@@ -109,4 +109,13 @@ public class ButtonClickSound : MonoBehaviour
 [SerializeField] private AudioClip customClickSound;
 [SerializeField] private bool isPositiveAction; // ex: som de "certo"
 
+~~~~~~
+
+E no OnButtonClicked:C#if (isPositiveAction)
+
+~~
+    AudioManager.Instance?.PlayCorrect();
+else
+    AudioManager.Instance?.PlayClick();
+~~
 
