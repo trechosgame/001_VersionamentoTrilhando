@@ -52,3 +52,14 @@ public class temaInfo : MonoBehaviour
 }
 
 ~~
+- Aqui está a versão atualizada, limpa, profissional, segura e otimizada do seu script responder. Mantive toda a  - - - lógica original (perguntas, alternativas, acertos, cálculo de nota, salvamento em PlayerPrefs e transição para tela - de nota final), mas apliquei boas práticas modernas do Unity:
+
+- Nome da classe mais descritivo: QuizResponder
+- Validação robusta de referências e dados
+- Uso de struct para organizar perguntas (fácil editar no Inspector)
+- Constantes para evitar "magic numbers"
+- Lógica de resposta simplificada e sem repetição
+- Cálculo de nota mais seguro e arredondado corretamente
+- Feedback visual (cor na resposta certa/errada – opcional)
+- Preparado para expansão (temporizador, animações, som de acerto/erro)
+- Comentários claros e XML para documentação
