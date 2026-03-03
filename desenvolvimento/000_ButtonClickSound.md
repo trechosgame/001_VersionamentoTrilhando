@@ -104,3 +104,9 @@ public class ButtonClickSound : MonoBehaviour
  - Dicas extras (opcional)
 
  - Se quiser som diferente por tipo de botão (ex: botão de menu, botão de resposta certa, botão de pausa):
+
+~~~~~~
+[SerializeField] private AudioClip customClickSound;
+[SerializeField] private bool isPositiveAction; // ex: som de "certo"
+
+
