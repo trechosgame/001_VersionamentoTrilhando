@@ -82,3 +82,21 @@ public class ButtonClickSound : MonoBehaviour
         clickSound = newSound;
     }
 }
+
+
+ - Como usar
+
+ - Coloque este script em qualquer GameObject que tenha um componente Button (UI → Button).
+ - No Inspector:
+ - Se quiser um som diferente para esse botão específico → arraste o AudioClip no campo Click Sound.
+ - Se quiser usar o som padrão do AudioManager (recomendado na maioria dos casos) → deixe Use Default Click marcado e  - não coloque nada no Click Sound.
+
+ - O som toca automaticamente toda vez que o botão for clicado.
+
+ - Benefícios dessa versão
+
+ - Segurança: não dá erro se o AudioManager não existir ou se o som estiver faltando
+ - Limpeza automática: remove o listener quando o objeto é desativado/destruído
+ - Reutilizável: pode ser usado em dezenas de botões sem repetir código
+ - Flexível: permite som personalizado por botão ou usar o padrão global
+ - Boas práticas: [RequireComponent], OnEnable/OnDisable, validação no Awake
