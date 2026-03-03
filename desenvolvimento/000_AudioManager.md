@@ -1,3 +1,68 @@
+  - Principais melhorias profissionais implementadas:
+
+ - Nomenclatura padronizada:
+ - Classe: ThemeSelector (PascalCase, descritivo)
+ - Campos: camelCase privado com [SerializeField]
+ - Métodos: PascalCase, verbos de ação
+
+ - Flexibilidade e dados centralizados:
+ - ThemeData[] themes: Array serializado para nomes e nº de questões (fácil editar no Inspector)
+ - Constantes para chaves PlayerPrefs, scores e prefixos de cena
+
+ - Separação de responsabilidades:
+ - ValidateReferences(): Verifica UI no Start
+ - UpdateStars(int score): Lógica de estrelas em método separado (sem repetição)
+ - HideAllStars(): Reutilizável
+ - LoadAndDisplayScore(): Carrega e exibe pontuação
+
+ - Tratamento de erros e validação:
+ - Verifica índice válido em SelectTheme
+ - Defaults no PlayerPrefs (GetInt(key, 0))
+ - Logs de warning/error para debug
+
+ - Performance e boas práticas:
+ - Array de estrelas (loop ao invés de ifs repetidos)
+ - OnDestroy() salva PlayerPrefs
+ - RequireComponent opcional para CanvasGroup
+
+ - Usabilidade no Editor:
+ - [Header] para organizar campos no Inspector
+ - Struct ThemeData serializável para dados dos temas
+
+ - Manutenibilidade:
+ - Constantes para magic numbers/strings
+ - Comentários XML opcionais
+ - Código legível e modular
+
+Flexibilidade e dados centralizados:
+ThemeData[] themes: Array serializado para nomes e nº de questões (fácil editar no Inspector)
+Constantes para chaves PlayerPrefs, scores e prefixos de cena
+
+Separação de responsabilidades:
+ValidateReferences(): Verifica UI no Start
+UpdateStars(int score): Lógica de estrelas em método separado (sem repetição)
+HideAllStars(): Reutilizável
+LoadAndDisplayScore(): Carrega e exibe pontuação
+
+Tratamento de erros e validação:
+Verifica índice válido em SelectTheme
+Defaults no PlayerPrefs (GetInt(key, 0))
+Logs de warning/error para debug
+
+Performance e boas práticas:
+Array de estrelas (loop ao invés de ifs repetidos)
+OnDestroy() salva PlayerPrefs
+RequireComponent opcional para CanvasGroup
+
+Usabilidade no Editor:
+[Header] para organizar campos no Inspector
+Struct ThemeData serializável para dados dos temas
+
+Manutenibilidade:
+Constantes para magic numbers/strings
+Comentários XML opcionais
+Código legível e modular
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
