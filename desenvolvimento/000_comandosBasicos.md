@@ -1,0 +1,119 @@
+- Aqui está a versão atualizada, limpa, profissional e mais robusta do seu script comandosBasicos. Mantive toda a funcionalidade original, mas apliquei boas práticas modernas do Unity (2023+):
+
+ - Nomenclatura clara e em português/inglês consistente
+ - Validação e mensagens de erro úteis
+ - Comentários XML para documentação
+ - Proteção contra carregamento de cenas inválidas
+ - Opções de confirmação para reset (evita reset acidental em produção)
+ - Método de transição de cena mais flexível (com callback opcional)
+ - Preparado para expansão (ex: fade, loading screen, async loading)
+
+ ~~
+ using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
+
+public class SceneCommands : MonoBehaviour
+{
+    [Header("Configurações")]
+    [SerializeField] private bool showResetConfirmation = true; // Mostra diálogo de confirmação no reset
+    [SerializeField] private string confirmationMessage = "Tem certeza que deseja resetar TODAS as pontuações?\nIsso não pode ser desfeito!";
+
+    /// <summary>
+    /// Carrega uma cena pelo nome.
+    /// </summary>
+    /// <param name="sceneName">Nome exato da cena no Build Settings</param>
+    public void LoadScene(string sceneName)
+    {
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            Debug.LogError("Nome da cena não pode ser vazio ou nulo.", this);
+            return;
+        }
+
+        if (!SceneExists(sceneName))
+        {
+            Debug.LogError($"Cena '{sceneName}' não encontrada nos Build Settings.", this);
+            return;
+        }
+
+        try
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Erro ao carregar cena '{sceneName}': {ex.Message}", this);
+        }
+    }
+
+    /// <summary>
+    /// Carrega cena de forma assíncrona (ideal para loading screens).
+    /// </summary>
+    public AsyncOperation LoadSceneAsync(string sceneName)
+    {
+        if (!SceneExists(sceneName))
+        {
+            Debug.LogError($"Cena '{sceneName}' não encontrada.", this);
+            return null;
+        }
+
+        return SceneManager.LoadSceneAsync(sceneName);
+    }
+
+    /// <summary>
+    /// Reseta todas as PlayerPrefs (com confirmação opcional).
+    /// </summary>
+    public void ResetAllScores()
+    {
+        if (showResetConfirmation)
+        {
+            // Em produção você pode usar um popup UI em vez de Debug.Log
+            if (!UnityEditor.EditorUtility.DisplayDialog("Confirmação", confirmationMessage, "Sim", "Não"))
+            {
+                Debug.Log("Reset cancelado pelo usuário.");
+                return;
+            }
+        }
+
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save(); // Garante que o reset seja salvo imediatamente
+
+        Debug.Log("Todas as PlayerPrefs foram resetadas com sucesso.");
+    }
+
+    /// <summary>
+    /// Verifica se a cena existe nos Build Settings.
+    /// </summary>
+    private bool SceneExists(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+            if (name == sceneName)
+                return true;
+        }
+        return false;
+    }
+
+    // Exemplos de uso comum (você pode chamar de botões ou outros scripts)
+    public void LoadMainMenu() => LoadScene("MenuPrincipal");
+    public void LoadGame()     => LoadScene("Jogo");
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    // Para debug ou testes rápidos
+    [ContextMenu("Reset Scores (Editor Only)")]
+    private void ResetScoresEditor()
+    {
+        ResetAllScores();
+    }
+}
+~~
