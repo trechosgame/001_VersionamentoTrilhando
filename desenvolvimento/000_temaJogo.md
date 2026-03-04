@@ -278,3 +278,38 @@ public class ThemeSelector : MonoBehaviour
 
  - Botão Play:
  - On Click → ThemeSelector → PlaySelectedTheme
+
+ - Sugestões para deixar ainda mais profissional (opcional):
+
+ - Animação das estrelas:C#private void UpdateStars(int score)
+~~
+{
+    HideAllStars();
+    int starsEarned = /* cálculo */;
+    for (int i = 0; i < starsEarned; i++)
+    {
+        if (stars[i] != null)
+        {
+            stars[i].SetActive(true);
+            // DOTween exemplo:
+            // stars[i].transform.localScale = Vector3.zero;
+            // stars[i].transform.DOScale(1f, 0.5f).SetDelay(i * 0.15f);
+        }
+    }
+}
+~~
+ - Som ao selecionar tema:C#public void SelectTheme(int themeIndex)
+~~
+{
+    // ... lógica atual ...
+    AudioManager.Instance?.PlayClick();
+}
+Loading assíncrono:C#public void PlaySelectedTheme()
+{
+    string sceneName = scenePrefix + currentThemeId.ToString();
+    SceneManager.LoadSceneAsync(sceneName);
+}
+
+~~
+
+ - Teste e me diga se precisa de mais ajustes (fade, som, animação, integração com menu principal, etc.)!
