@@ -252,3 +252,29 @@ public class ThemeSelector : MonoBehaviour
 }
 
 ~~
+
+  - Principais melhorias realizadas:
+ - Nome da classe mais claro → ThemeSelector
+ - Validação robusta no Awake (evita erros silenciosos no build)
+ - Constantes para chaves PlayerPrefs, pontuações e prefixos (fácil alterar tudo de uma vez)
+ - Array de estrelas (loop simples, sem ifs repetidos)
+ - Métodos separados para cada responsabilidade (UpdateThemeDisplay, UpdateStars, etc.)
+ - Verificação de cena existente antes de carregar
+ - Organização no Inspector com [Header] e [SerializeField]
+ - Comentários XML para documentação (aparecem no IntelliSense)
+ - Segurança contra índices inválidos e referências nulas
+
+ - Como usar agora:
+
+ - No Inspector:
+ - Arraste Play Button, Theme Name Text, Theme Info Panel, Theme Info Text e os 3 objetos de estrela no array Stars
+ - Preencha Theme Names com os nomes dos temas (ex: "Matemática", "Português", "Ciências")
+ - Ajuste Questions Per Theme se o número mudar por tema
+
+ - Nos botões de seleção de tema (ex: 6 temas):
+ - Botão Tema 0 → On Click → ThemeSelector → SelectTheme → digite 0
+ - Botão Tema 1 → SelectTheme → 1
+- etc.
+
+ - Botão Play:
+ - On Click → ThemeSelector → PlaySelectedTheme
